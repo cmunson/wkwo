@@ -1,0 +1,122 @@
+/* Stiziles */
+
+html, body {
+  background: url('/images/bg.jpg');
+  margin: 0;
+  padding: 0;
+  font-family: 'Neuton', serif;
+}
+
+.barcode-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 1px;
+  opacity: 0;
+}
+
+.page {
+  padding: 4rem 1rem 1rem 1rem;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  height: 4rem;
+  line-height: 4rem;
+  width: 100%;
+  background: rgba(0,0,0,.5);
+  z-index: 400;
+}
+
+.side {
+  display: none;
+}
+
+
+.btn-black {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #ffffff;
+  padding: 10px 20px;
+  background: -moz-linear-gradient(
+    top,
+    #a3a3a3 0%,
+    #3b3b3b 50%,
+    #242424 50%,
+    #000000);
+  background: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#a3a3a3),
+    color-stop(0.50, #3b3b3b),
+    color-stop(0.50, #242424),
+    to(#000000));
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  -moz-box-shadow:
+    0px 1px 3px rgba(000,000,000,0.5),
+    inset 0px 0px 1px rgba(255,255,255,0.6);
+  -webkit-box-shadow:
+    0px 1px 3px rgba(000,000,000,0.5),
+    inset 0px 0px 1px rgba(255,255,255,0.6);
+  box-shadow:
+    0px 1px 3px rgba(000,000,000,0.5),
+    inset 0px 0px 1px rgba(255,255,255,0.6);
+  text-shadow:
+    0px -1px 0px rgba(000,000,000,1),
+    0px 1px 0px rgba(255,255,255,0.2);
+}
+
+.btn-home {
+  margin: 1rem;
+  text-decoration: none;
+}
+
+.Product {
+  width: auto;
+  background: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  display: inline-block;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  vertical-align: top;
+}
+
+.Product h1 {
+  margin: 0;
+}
+
+.Product .price {
+  font-size: 2rem;
+  text-align: right;
+}
+
+.col-2 {
+  position: absolute;
+  top: 0;
+  margin-top: 5rem;
+  background: rgba( 255, 255, 255, .8);
+  font-size: 2rem;
+}
+
+.field {
+}
+
+.field-label {
+  display: inline-block;
+}
+
+.field-content {
+  margin-left: 10rem;
+  display: inline-blcok;
+}
+
+.HomePage h1 {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
