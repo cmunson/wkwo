@@ -8,12 +8,13 @@ html, body {
 }
 
 .barcode-wrapper {
+
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 1px;
-  width: 1px;
-  opacity: 0;
+
+
+
 }
 
 .page {
@@ -31,7 +32,7 @@ html, body {
 }
 
 .side {
-  display: none;
+
 }
 
 

@@ -1,19 +1,35 @@
 /** @jsx React.DOM */
+
+// Contrib Components
 var _ = require('underscore');
 var React = require('react/addons');
 var CSSTransitionGroup = React.addons.CSSTransitionGroup;
-var Router = require('react-router');
-var Route = Router.Route;
-var Location = Router.Location;
-var Routes = Router.Routes;
-var Link = Router.Link;
-var Data = require('./data');
-var WkwoGlobals = require('./globals');
 
+// Routes
+var Router = 	require('react-router');
+var Route = 	Router.Route;
+var Routes = 	Router.Routes;
+var Location = 	Router.Location;
+var Link = 		Router.Link;
+
+// Custom libs and variables
 //var imagePath = 'http://96.126.108.150/angel/sites/default/files/wine-images/'
+var WkwoGlobals = require('./globals');
+var Data = require('./data');
 var _data = [];
 
+// Custom Components
+// var Scanner = require('./Scanner');
+var Header = require('./Header');
+var Product = require('./Product');
+
+// Pages and Layouts
+var PageHome = require('./PageHome');
+var PageProduct = require('./PageProduct');
+
+// Styles
 require('../../styles/main.css');
+
 
 var Scanner = React.createClass({
 	getInitialState: function(){
@@ -41,7 +57,7 @@ var Scanner = React.createClass({
 		});
 	},
 	componentDidMount: function() {
-		setInterval(this.keepFocus, 1000);
+		// setInterval(this.keepFocus, 1000);
 	},
 	render: function() {
 		return (
@@ -54,10 +70,6 @@ var Scanner = React.createClass({
 					name="barcode"
 					onChange={this.onChange}
 					onKeyDown={this.handleKeyDown}/>
-				<input
-					className="submit"
-					type="button"
-					value="Submit"/>
 			</div>
 		);
 	}
@@ -95,136 +107,24 @@ var App = React.createClass({
       	<Header />
         <Scanner />
         <div className="page">
+	        {this.props.activeRouteHandler()}
 	        <ul className="side">
 	          {product_names}
 	        </ul>
-	        {this.props.activeRouteHandler()}
 	    </div>
       </div>
     );
   }
 });
 
-var Header = React.createClass({
-	render: function() {
-		return (
-			<div className="header">
-				<Link className="btn-home btn-black" to="home">Home</Link>
-			</div>
-		);
-	}
-});
 
-var Product = React.createClass({
-  componentDidMount: function() {
-    $.ajax({
-      url: "http://96.126.108.150/angel/wkwo_wine/retrieve?barcode="+this.props.params.productId,
-      dataType: 'json',
-      success: function(data) {
-        this.setState({data: WkwoGlobals.proccessJSON(data)});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error("Wines Not Found", status, err.toString());
-      }.bind(this)
-    });
-  },
-  getInitialState: function(){
-    return{
-      data: []
-    }
-  },
-
-  render: function() {
-
-    var product_data = this.state.data.map(function(product){
-      return (
-        <span>
-          <div className="Product">
-            <h1>{product.title}</h1>
-            <img src={product.imageURL} />
-            <div className="price">{product.price}</div>
-          </div>
-          <div className="Product col-2">
-            <div className="field">
-              <div className="field-label">Grape</div>
-          <div className="field-content">{product.grape}</div>
-        </div>
-        <div className="field">
-            <div className="field-label">Region</div>
-            <div className="field-content">{product.region}</div>
-        </div>
-        <div className="field">
-              <div className="field-label">Type</div>
-          <div className="field-content">{product.type}</div>
-        </div>
-            <div className="field">
-              <div className="field-label">Description</div>
-          <div className="field-content">{product.body}</div>
-        </div>
-          </div>
-        </span>
-      );
-    });
-
-    return (
-      <span>{product_data}</span>
-    );
-  }
-});
-
-
-
-var AnimatedLocations = React.createClass({
-
-    mixins: [Router.RouterMixin, Router.AsyncRouteRenderingMixin],
-
-    getRoutes: function() {
-      return this.props.children;
-    },
-
-    render: function() {
-
-      var handler = this.renderRouteHandler();
-      var isPopState = this.state.navigation.isPopState;
-      var enabled = isPopState ?
-                    !!this.props.popStateTransitionName :
-                    !this.state.navigation.noTransition;
-      var props = {
-        component: React.DOM.div,
-        transitionEnter: enabled,
-        transitionLeave: enabled,
-      };
-      if (isPopState && this.props.popStateTransitionName) {
-        props.transitionName = this.props.popStateTransitionName;
-      } else if (this.state.navigation.transitionName) {
-        props.transitionName = this.state.navigation.transitionName;
-      }
-
-      handler.props.key = this.state.match.path;
-      return this.transferPropsTo(CSSTransitionGroup(props, handler));
-
-    }
-});
-
-
-var HomePage = React.createClass({
-
-  render: function() {
-
-    return (
-      <div className="HomePage">
-      	<h1>Scan Something</h1>
-      </div>
-    );
-  }
-});
 
 
 var routes = (
   <Routes>
     <Route handler={App}>
-      <Route name="home" path="home" handler={HomePage}/>
-      <Route name="product" path="product/:productId" handler={Product}/>
+      <Route name="home" path="home" handler={PageHome}/>
+      <Route name="product" path="product/:productId" handler={PageProduct}/>
     </Route>
   </Routes>
 );
