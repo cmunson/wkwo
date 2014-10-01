@@ -7,6 +7,7 @@
 var React = require('react/addons');
 var API = require('./API');
 var PureRenderMixin = require('react').addons.PureRenderMixin;
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 require('../../styles/Product.css');
 
@@ -34,7 +35,9 @@ var Product = React.createClass({
 
     return (
       <ul className={"product-viewmode-"+this.props.viewMode}>
-      	{product_list}
+      	<ReactCSSTransitionGroup transitionName="product">
+      		{product_list}
+      	</ReactCSSTransitionGroup>
       </ul>
     );
   }

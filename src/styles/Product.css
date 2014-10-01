@@ -8,3 +8,21 @@
 	background: silver;
 	font-size: 3rem;
 }
+
+.product-enter {
+	opacity: 0.01;
+	transition: opacity .5s ease-in;
+}
+
+.product-enter.product-enter-active {
+	opacity: 1;
+}
+
+.product-leave {
+	opacity: 1;
+	transition: opacity .5s ease-in;
+}
+
+.product-leave.product-leave-active {
+	opacity: 0.01;
+}
