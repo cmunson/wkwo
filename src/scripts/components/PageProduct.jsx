@@ -13,13 +13,13 @@ require('../../styles/PageProduct.css');
 var PageProduct = React.createClass({
   mixins: [PureRenderMixin],
   handleAJAX: function(data){
-  	this.setState({
+  	this.replaceState({
   		data: data
   	});
   },
-  componentDidMount: function() {
-  	if(this.props.params.productId){
-  		API.getProductById( this.props.params.productId, this.handleAJAX);
+  componentWillReceiveProps: function(nextProps) {
+  	if(nextProps.params.productId){
+  		API.getProductById( nextProps.params.productId, this.handleAJAX);
 	}else{
 	  	API.getAllProducts( this.handleAJAX );
 	}

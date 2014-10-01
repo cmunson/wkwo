@@ -3,3 +3,8 @@
 	margin: 1rem;
 	padding: 1rem;
 }
+
+.product-viewmode-detail .product {
+	background: silver;
+	font-size: 3rem;
+}
