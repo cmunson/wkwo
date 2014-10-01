@@ -18,7 +18,11 @@ var PageProduct = React.createClass({
   	});
   },
   componentDidMount: function() {
-  	API.getProductById( this.props.params.productId, this.handleAJAX);
+  	if(this.props.params.productId){
+  		API.getProductById( this.props.params.productId, this.handleAJAX);
+	}else{
+	  	API.getAllProducts( this.handleAJAX );
+	}
   },
   getInitialState: function(){
     return{

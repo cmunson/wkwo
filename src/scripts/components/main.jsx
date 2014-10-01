@@ -124,6 +124,7 @@ var routes = (
   <Routes>
     <Route handler={App}>
       <Route name="home" path="home" handler={PageHome}/>
+      <Route name="productFull" path="product" handler={PageProduct}/>
       <Route name="product" path="product/:productId" handler={PageProduct}/>
     </Route>
   </Routes>
