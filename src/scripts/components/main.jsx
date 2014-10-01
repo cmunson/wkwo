@@ -8,8 +8,9 @@ var Location = Router.Location;
 var Routes = Router.Routes;
 var Link = Router.Link;
 var Data = require('./data');
+var WkwoGlobals = require('./globals');
 
-var imagePath = 'http://96.126.108.150/angel/sites/default/files/wine-images/'
+//var imagePath = 'http://96.126.108.150/angel/sites/default/files/wine-images/'
 var _data = [];
 
 require('../../styles/main.css');
@@ -63,29 +64,24 @@ var Scanner = React.createClass({
 });
 
 var App = React.createClass({
-  proccessJSON: function(data){
-
-  	var proccessedJSON = data.map(function(product){
-  		return {
-  			title: 		product.node_title,
-  			barcode: 	product.field_barcode,
-  			body: 		product.body,
-  			imageURL: 	imagePath + product.field_wine_image.filename,
-  			grape: 		product.field_wine_graph[0],
-  			region: 	'noRegion',
-  			price: 		product.field_wine_price,
-  			type: 		product.field_wine_type[0]
-  		}
-  	});
-  	_data = proccessedJSON; // Store it locally for fun
-  	return proccessedJSON;
-  },
   componentWillMount: function() {
 
   },
+  componentDidMount: function() {
+    $.ajax({
+      url: "http://96.126.108.150/angel/wkwo_wine/retrieve",
+      dataType: 'json',
+      success: function(data) {
+        this.setState({data: WkwoGlobals.proccessJSON(data)});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error("No Wines Found!!", status, err.toString());
+      }.bind(this)
+    });
+  },
   getInitialState: function(){
   	return{
-  		data: this.proccessJSON(Data)
+  		data: [] //this.proccessJSON(Data)
   	}
   },
   render: function() {
@@ -120,39 +116,58 @@ var Header = React.createClass({
 });
 
 var Product = React.createClass({
+  componentDidMount: function() {
+    $.ajax({
+      url: "http://96.126.108.150/angel/wkwo_wine/retrieve?barcode="+this.props.params.productId,
+      dataType: 'json',
+      success: function(data) {
+        this.setState({data: WkwoGlobals.proccessJSON(data)});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error("Wines Not Found", status, err.toString());
+      }.bind(this)
+    });
+  },
+  getInitialState: function(){
+    return{
+      data: []
+    }
+  },
 
   render: function() {
 
-    var product = _.find(_data, function(item){
-    	return item.barcode == this.props.params.productId;
-    }.bind(this));
+    var product_data = this.state.data.map(function(product){
+      return (
+        <span>
+          <div className="Product">
+            <h1>{product.title}</h1>
+            <img src={product.imageURL} />
+            <div className="price">{product.price}</div>
+          </div>
+          <div className="Product col-2">
+            <div className="field">
+              <div className="field-label">Grape</div>
+          <div className="field-content">{product.grape}</div>
+        </div>
+        <div className="field">
+            <div className="field-label">Region</div>
+            <div className="field-content">{product.region}</div>
+        </div>
+        <div className="field">
+              <div className="field-label">Type</div>
+          <div className="field-content">{product.type}</div>
+        </div>
+            <div className="field">
+              <div className="field-label">Description</div>
+          <div className="field-content">{product.body}</div>
+        </div>
+          </div>
+        </span>
+      );
+    });
 
     return (
-      <span>
-	      <div className="Product">
-	      	<h1>{product.title}</h1>
-	      	<img src={product.imageURL} />
-	      	<div className="price">{product.price}</div>
-	      </div>
-	      <div className="Product col-2">
-	      	<div className="field">
-		      	<div className="field-label">Grape</div>
-				<div className="field-content">{product.grape}</div>
-			</div>
-			<div className="field">
-		      	<div className="field-label">Region</div>
-				<div className="field-content">{product.region}</div>
-			</div>
-			<div className="field">
-		      	<div className="field-label">Type</div>
-				<div className="field-content">{product.type}</div>
-			</div>
-	      	<div className="field">
-		      	<div className="field-label">Description</div>
-				<div className="field-content">{product.body}</div>
-			</div>
-	      </div>
-      </span>
+      <span>{product_data}</span>
     );
   }
 });
