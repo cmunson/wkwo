@@ -1,29 +1,22 @@
 
-var URL_PRODUCT_DETAIL 	= "http://96.126.108.150/angel/wkwo_wine/retrieve?barcode=";
-var URL_FULL_LIST 		= "http://96.126.108.150/angel/wkwo_wine/retrieve";
+var URL_SEARCH = "http://96.126.108.150/angel/wkwo_wine/retrieve";
 
 var API = {
-	getProductById: function(id, callback){
-		var API_URL = URL_PRODUCT_DETAIL+id;
+	createQueryString: function(sObj) {
+		var qString = $.map(sObj, function(value, key) {
+    				return key+"="+value;
+					}).join("&");
+		return (qString != "") ? "?"+qString : '';
+	},
+	getProducts: function(searchObj, callback){
+		var search_str = this.createQueryString(searchObj);
+		var API_URL = URL_SEARCH+search_str;
+		console.log(API_URL);
 		$.ajax({
 			url: API_URL,
 			dataType: 'json',
 			success: function(data) {
 				callback(data);
-				return data;
-			}.bind(this),
-			error: function(xhr, status, err) {
-				console.error("Wines Not Found", status, err.toString());
-			}
-		});
-	},
-	getAllProducts: function(callback){
-		$.ajax({
-			url: URL_FULL_LIST,
-			dataType: 'json',
-			success: function(data) {
-				callback(data);
-				return data;
 			}.bind(this),
 			error: function(xhr, status, err) {
 				console.error("Wines Not Found", status, err.toString());

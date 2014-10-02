@@ -14,8 +14,8 @@ var Header = React.createClass({
 		return (
 			<div className="header">
 				<Link className="btn-home btn-black" to="home">Home</Link>
-				<Link className="btn-home btn-black" to="/product" >To Products</Link>
-				<Link className="btn-home btn-black" to="product" params={{productId: 1234567890}}>To Damnnum</Link>
+				<Link className="btn-home btn-black" to="product">To Products</Link>
+				<Link className="btn-home btn-black" to="product" query={{barcode: 1234567890}}>To Damnnum</Link>
 			</div>
 		);
 	}

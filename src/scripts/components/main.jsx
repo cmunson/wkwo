@@ -99,7 +99,7 @@ var App = React.createClass({
   render: function() {
   	var product_names = this.state.data.map(function(product) {
       return (
-      	<li><Link to="product" params={{productId: product.barcode}}>{product.title}</Link></li>
+      	<li><Link to="product" query={{barcode: product.barcode}}>{product.title}</Link></li>
       	);
     });
     return (
@@ -109,7 +109,7 @@ var App = React.createClass({
         <div className="page">
 	        {this.props.activeRouteHandler()}
 	        <ul className="side">
-	          {product_names}
+
 	        </ul>
 	    </div>
       </div>
@@ -124,8 +124,7 @@ var routes = (
   <Routes>
     <Route handler={App}>
       <Route name="home" path="home" handler={PageHome}/>
-      <Route name="productFull" path="product" handler={PageProduct}/>
-      <Route name="product" path="product/:productId" handler={PageProduct}/>
+      <Route name="product" path="product" handler={PageProduct}/>
     </Route>
   </Routes>
 );

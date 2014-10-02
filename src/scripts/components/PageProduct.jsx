@@ -13,16 +13,16 @@ require('../../styles/PageProduct.css');
 var PageProduct = React.createClass({
   mixins: [PureRenderMixin],
   handleAJAX: function(data){
-  	this.replaceState({
-  		data: data
-  	});
+    this.setState({
+      data: data
+    });
   },
-  componentWillReceiveProps: function(nextProps) {
-  	if(nextProps.params.productId){
-  		API.getProductById( nextProps.params.productId, this.handleAJAX);
-	}else{
-	  	API.getAllProducts( this.handleAJAX );
-	}
+  // componentWillReceiveProps: function() {
+  //     API.getProducts(this.props.query, this.handleAJAX);
+  // },
+  componentDidMount: function() {
+    console.log(this.props.query);
+    API.getProducts( this.props.query, this.handleAJAX);
   },
   getInitialState: function(){
     return{
