@@ -21,6 +21,8 @@ var _data = [];
 // Custom Components
 // var Scanner = require('./Scanner');
 var Header = require('./Header');
+var FiltersWrapper = require('./FiltersWrapper');
+
 var Product = require('./Product');
 
 // Pages and Layouts
@@ -93,18 +95,27 @@ var App = React.createClass({
   },
   getInitialState: function(){
   	return{
-  		data: [] //this.proccessJSON(Data)
+  		data: [], //this.proccessJSON(Data)
+      filters: [{name:'grape'},{name:'type'},{name:'pairing'}],
   	}
   },
   render: function() {
   	var product_names = this.state.data.map(function(product) {
       return (
-      	<li><Link to="product" query={{barcode: product.barcode}}>{product.title}</Link></li>
-      	);
+      	<li><Link to="product" params={{barcode: product.barcode}}>{product.title}</Link></li>
+      );
+    });
+    var filters = this.state.filters.map(function(filter) {
+      return (
+          <FiltersWrapper params={{name: filter.name}} />
+      );
     });
     return (
       <div>
       	<Header />
+        <div>
+        {filters}
+        </div>
         <Scanner />
         <div className="page">
 	        {this.props.activeRouteHandler()}
@@ -116,9 +127,6 @@ var App = React.createClass({
     );
   }
 });
-
-
-
 
 var routes = (
   <Routes>
