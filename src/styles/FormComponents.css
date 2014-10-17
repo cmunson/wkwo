@@ -1,3 +1,51 @@
-.FormComponents{
-  border: 1px dashed #f00;
+.filter {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* The label */
+.filter-dropdown-selected {
+color: #777;
+padding: 10px;
+font-size: 16px;
+padding-right: 6rem;
+background: #fff url(../images/select-arrow-open.png) 98% center no-repeat;
+display: block;
+border: 1px solid #ccc;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+-webkit-transition: all 0.5s ease;
+-moz-transition: all 0.5s ease;
+-o-transition: all 0.5s ease;
+transition: all 0.5s ease;
+width: 20rem;
+}
+
+.filter-dropdown-wrapper {
+	height: 0;
+	width: 0;
+	overflow: visible;
+}
+
+.filter-dropdown-items {
+	position: relative;
+	top: 0;
+	display: none;
+	margin: 0;
+	padding: 0;
+	background: white;
+	width: 20rem;
+	overflow: hidden;
+}
+
+.filter-dropdown-items li {
+	width: 20rem;
+	padding: 0.9em 1em;
+	cursor: pointer;
+	opacity: 0;
+	-webkit-user-select: none;
+	user-select: none;
+	background: white;
 }

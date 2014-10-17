@@ -1,0 +1,11 @@
+.question {
+	text-shadow: 3px 2px 7px rgba(0, 0, 0, 1);
+	color: white;
+	text-align: center;
+}
+
+.myDiagramDiv {
+	width:400px;
+	height:150px;
+	background-color: #DAE4E4;
+}
