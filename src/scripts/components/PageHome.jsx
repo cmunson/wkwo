@@ -31,11 +31,29 @@ var PageHome = React.createClass({
     	<span>
 	      <div className="HomePage">
 
-  			<Dropdown label="Grape" name="GrapeFilter" selected={this.linkState('grapeFilter')}>
-  				<DropdownOption value="red" label="Red" />
-  				<DropdownOption value="white" label="White" />
-  				<DropdownOption value="mixed" label="Varied/Mixed" />
-  			</Dropdown>
+        <h3>You have selected:</h3>
+        <ul>
+          <li>{this.state.grapeFilter.label}</li>
+          <li>{this.state.typeFilter.label}</li>
+          <li>{this.state.pairingFilter.label}</li>
+        </ul>
+
+	      </div>
+     	</span>
+    );
+
+  }
+});
+
+module.exports = PageHome;
+
+/* Depricated but here for reference
+
+        <Dropdown label="Grape" name="GrapeFilter" selected={this.linkState('grapeFilter')}>
+          <DropdownOption value="red" label="Red" />
+          <DropdownOption value="white" label="White" />
+          <DropdownOption value="mixed" label="Varied/Mixed" />
+        </Dropdown>
 
         <Dropdown label="Type" name="TypeFilter" selected={this.linkState('typeFilter')}>
           <DropdownOption value="cabernet_sauvignon" label="Cabernet Sauvignon" />
@@ -60,18 +78,5 @@ var PageHome = React.createClass({
           <DropdownOption value="seafood" label="Seafood" />
         </Dropdown>
 
-        <h3>You have selected:</h3>
-        <ul>
-          <li>{this.state.grapeFilter.label}</li>
-          <li>{this.state.typeFilter.label}</li>
-          <li>{this.state.pairingFilter.label}</li>
-        </ul>
 
-	      </div>
-     	</span>
-    );
-
-  }
-});
-
-module.exports = PageHome;
+*/

@@ -21,15 +21,17 @@ var _data = [];
 // Custom Components
 // var Scanner = require('./Scanner');
 var Header = require('./Header');
-var Filters = require('./Filters');
+// var Filters = require('./Filters');
 
-var FiltersWrapper = require('./FiltersWrapper');
+// depricated -- var FiltersWrapper = require('./FiltersWrapper');
 
 var Product = require('./Product');
 
 // Pages and Layouts
 var PageHome = require('./PageHome');
 var PageProduct = require('./PageProduct');
+var PageQuestion = require('./PageQuestion');
+var PageFilter = require('./PageFilter');
 
 // Styles
 require('../../styles/main.css');
@@ -122,11 +124,6 @@ var App = React.createClass({
     return (
       <div>
       	<Header />
-        <Filters options={[
-          {label: "Grape",    api:"grape",   selected: this.linkState('filterGrape')},
-          {label: "Type",     api:"type",    selected: this.linkState('filterType')},
-          {label: "Pairing",  api:"pairing", selected: this.linkState('filterPairing')}
-        ]}/>
         
         <Scanner />
         <div className="page">
@@ -144,7 +141,9 @@ var routes = (
   <Routes>
     <Route handler={App}>
       <Route name="home" path="home" handler={PageHome}/>
+      <Route name="filter" path="filter" handler={PageFilter}/>
       <Route name="product" path="product" handler={PageProduct}/>
+      <Route name="question" path="question" handler={PageQuestion}/>
     </Route>
   </Routes>
 );
