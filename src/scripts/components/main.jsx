@@ -21,6 +21,7 @@ var _data = [];
 // Custom Components
 // var Scanner = require('./Scanner');
 var Header = require('./Header');
+var Filters = require('./Filters');
 var FiltersWrapper = require('./FiltersWrapper');
 
 var Product = require('./Product');
@@ -36,7 +37,10 @@ require('../../styles/main.css');
 var Scanner = React.createClass({
 	getInitialState: function(){
 		return {
-			value: ''
+			value: '',
+      filterGrape: '',
+      filterType: '',
+      filterPairing: ''
 		}
 	},
 	keepFocus: function() {
@@ -105,17 +109,16 @@ var App = React.createClass({
       	<li><Link to="product" params={{barcode: product.barcode}}>{product.title}</Link></li>
       );
     });
-    var filters = this.state.filters.map(function(filter) {
-      return (
-          <FiltersWrapper params={{name: filter.name}} />
-      );
-    });
+    // var filters = this.state.filters.map(function(filter) {
+    //   return (
+    //       <FiltersWrapper params={{name: filter.name}} />
+    //   );
+    // });
+    
     return (
       <div>
       	<Header />
-        <div>
-        {filters}
-        </div>
+        <Filters options={["grape","type","pairing"]} />
         <Scanner />
         <div className="page">
 	        {this.props.activeRouteHandler()}
@@ -136,5 +139,7 @@ var routes = (
     </Route>
   </Routes>
 );
+
+
 
 React.renderComponent(routes, document.getElementById('example'));
