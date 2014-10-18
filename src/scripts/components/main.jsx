@@ -22,6 +22,7 @@ var _data = [];
 // var Scanner = require('./Scanner');
 var Header = require('./Header');
 var Filters = require('./Filters');
+
 var FiltersWrapper = require('./FiltersWrapper');
 
 var Product = require('./Product');
@@ -82,6 +83,7 @@ var Scanner = React.createClass({
 });
 
 var App = React.createClass({
+  mixins: [React.addons.LinkedStateMixin],
   componentWillMount: function() {
 
   },
@@ -99,8 +101,10 @@ var App = React.createClass({
   },
   getInitialState: function(){
   	return{
-  		data: [], //this.proccessJSON(Data)
-      filters: [{name:'grape'},{name:'type'},{name:'pairing'}],
+  		data: [],
+      filterGrape: {label:"Any"},
+      filterType: {label:"Any"},
+      filterPairing: {label:"Any"},
   	}
   },
   render: function() {
@@ -118,7 +122,12 @@ var App = React.createClass({
     return (
       <div>
       	<Header />
-        <Filters options={["grape","type","pairing"]} />
+        <Filters options={[
+          {label: "Grape",    api:"grape",   selected: this.linkState('filterGrape')},
+          {label: "Type",     api:"type",    selected: this.linkState('filterType')},
+          {label: "Pairing",  api:"pairing", selected: this.linkState('filterPairing')}
+        ]}/>
+        
         <Scanner />
         <div className="page">
 	        {this.props.activeRouteHandler()}

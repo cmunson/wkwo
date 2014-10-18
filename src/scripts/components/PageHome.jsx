@@ -8,8 +8,8 @@ var React = require('react/addons');
 var FormComponents 			= require('./FormComponents').FormComponents;
 var SelectDropdown 			= require('./FormComponents').FormComponents.SelectDropdown;
 var SelectDropdownOption 	= require('./FormComponents').FormComponents.SelectDropdownOption;
-var FilterDropdown 			= require('./FormComponents').FormComponents.FilterDropdown;
-var FilterDropdownOption 	= require('./FormComponents').FormComponents.FilterDropdownOption;
+var Dropdown 			= require('./FormComponents').FormComponents.Dropdown;
+var DropdownOption 	= require('./FormComponents').FormComponents.DropdownOption;
 
 
 require('../../styles/PageHome.css');
@@ -31,34 +31,34 @@ var PageHome = React.createClass({
     	<span>
 	      <div className="HomePage">
 
-  			<FilterDropdown label="Grape" name="GrapeFilter" selected={this.linkState('grapeFilter')}>
-  				<FilterDropdownOption value="red" label="Red" />
-  				<FilterDropdownOption value="white" label="White" />
-  				<FilterDropdownOption value="mixed" label="Varied/Mixed" />
-  			</FilterDropdown>
+  			<Dropdown label="Grape" name="GrapeFilter" selected={this.linkState('grapeFilter')}>
+  				<DropdownOption value="red" label="Red" />
+  				<DropdownOption value="white" label="White" />
+  				<DropdownOption value="mixed" label="Varied/Mixed" />
+  			</Dropdown>
 
-        <FilterDropdown label="Type" name="TypeFilter" selected={this.linkState('typeFilter')}>
-          <FilterDropdownOption value="cabernet_sauvignon" label="Cabernet Sauvignon" />
-          <FilterDropdownOption value="chardonnay" label="Chardonnay" />
-          <FilterDropdownOption value="gewurztraiminer" label="Gewürztraminer" />
-          <FilterDropdownOption value="merlot" label="Merlot" />
-          <FilterDropdownOption value="pinot_noir" label="Pinot Noir" />
-          <FilterDropdownOption value="riesling" label="Riesling" />
-          <FilterDropdownOption value="sauvignon_blanc" label="Sauvignon blanc" />
-          <FilterDropdownOption value="syrah" label="Syrah" />
-        </FilterDropdown>
+        <Dropdown label="Type" name="TypeFilter" selected={this.linkState('typeFilter')}>
+          <DropdownOption value="cabernet_sauvignon" label="Cabernet Sauvignon" />
+          <DropdownOption value="chardonnay" label="Chardonnay" />
+          <DropdownOption value="gewurztraiminer" label="Gewürztraminer" />
+          <DropdownOption value="merlot" label="Merlot" />
+          <DropdownOption value="pinot_noir" label="Pinot Noir" />
+          <DropdownOption value="riesling" label="Riesling" />
+          <DropdownOption value="sauvignon_blanc" label="Sauvignon blanc" />
+          <DropdownOption value="syrah" label="Syrah" />
+        </Dropdown>
 
-        <FilterDropdown label="Pairing" name="PairingFilter" selected={this.linkState('pairingFilter')}>
-          <FilterDropdownOption value="beef" label="Beef" />
-          <FilterDropdownOption value="chicken" label="Chicken" />
-          <FilterDropdownOption value="desert" label="Desert" />
-          <FilterDropdownOption value="fish" label="Fish" />
-          <FilterDropdownOption value="lamb" label="Lamb" />
-          <FilterDropdownOption value="pork" label="Pork" />
-          <FilterDropdownOption value="poultry" label="Poultry" />
-          <FilterDropdownOption value="salad" label="Salad" />
-          <FilterDropdownOption value="seafood" label="Seafood" />
-        </FilterDropdown>
+        <Dropdown label="Pairing" name="PairingFilter" selected={this.linkState('pairingFilter')}>
+          <DropdownOption value="beef" label="Beef" />
+          <DropdownOption value="chicken" label="Chicken" />
+          <DropdownOption value="desert" label="Desert" />
+          <DropdownOption value="fish" label="Fish" />
+          <DropdownOption value="lamb" label="Lamb" />
+          <DropdownOption value="pork" label="Pork" />
+          <DropdownOption value="poultry" label="Poultry" />
+          <DropdownOption value="salad" label="Salad" />
+          <DropdownOption value="seafood" label="Seafood" />
+        </Dropdown>
 
         <h3>You have selected:</h3>
         <ul>

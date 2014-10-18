@@ -37,7 +37,12 @@ var SelectDropdownOption = React.createClass({
 	}
 });
 
-var FilterDropdown = React.createClass({
+var Dropdown = React.createClass({
+	getDefaultProps: function(){
+		return {
+			required: false
+		}
+	},
 	getInitialState: function(){
 		return {
 			visible: false
@@ -66,6 +71,13 @@ var FilterDropdown = React.createClass({
 		    calls: [[{
 		      opacity: [1, 0],
 		      translateY: [0, -30],
+		    }]]
+		});
+		$.Velocity.RegisterUI("slideInLeft", {
+		    defaultDuration: 100,
+		    calls: [[{
+		      opacity: [1, 0],
+		      translateX: [0, 30],
 		    }]]
 		});
 	},
@@ -98,8 +110,13 @@ var FilterDropdown = React.createClass({
 	render: function () {
 
 		var options = React.Children.map(this.props.children, function(child){
+
 			// Pass the onChange handler down to each of the FilterDropdownOptions
 			child.props.onChange = this.handleOnChange;
+			
+			// Add 'Any' as an option by default. Use the 'required' prop to override
+
+
 			return(child);
 		}.bind(this));
 
@@ -117,7 +134,7 @@ var FilterDropdown = React.createClass({
 	}
 });
 
-var FilterDropdownOption = React.createClass({
+var DropdownOption = React.createClass({
 	getDefaultProps: function(){
 		return {
 			value: '',
@@ -140,7 +157,7 @@ var FilterDropdownOption = React.createClass({
 module.exports = { FormComponents: {
 	SelectDropdown: SelectDropdown,
 	SelectDropdownOption: SelectDropdownOption,
-	FilterDropdown: FilterDropdown,
-	FilterDropdownOption: FilterDropdownOption
+	Dropdown: Dropdown,
+	DropdownOption: DropdownOption
 	}
 }

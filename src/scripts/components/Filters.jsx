@@ -7,8 +7,8 @@ require('../../styles/Filters.css');
 
 var React = require('react/addons');
 var API = require('./API');
-var FilterDropdown      = require('./FormComponents').FormComponents.FilterDropdown;
-var FilterDropdownOption  = require('./FormComponents').FormComponents.FilterDropdownOption;
+var Dropdown      = require('./FormComponents').FormComponents.Dropdown;
+var DropdownOption  = require('./FormComponents').FormComponents.DropdownOption;
 
 var Filters = React.createClass({
   getDefaultProps: function(){
@@ -16,21 +16,17 @@ var Filters = React.createClass({
       options: []
     }
   },
-  componentDidMount: function() {
-    this.props.options.map(function(option){
-      return (
-        <div>{option}</div>
-        )
-    });
-    // API.getFilters(this.props.api, this.handleAJAX);
-  },
   render: function() {
 
-
+    var filters = this.props.options.map(function(option){
+      return (
+        <Filter label={option.label} api={option.api} selected={option.selected}/>
+        )
+    });
 
     return (
-      <div>
-        testing
+      <div className="filters">
+        {filters}
       </div>
       );
   }
@@ -39,7 +35,9 @@ var Filters = React.createClass({
 var Filter = React.createClass({
   getDefaultProps: function() {
     return {
-      api: ''
+      label: '',
+      api: '',
+      selected: ''
     }
   },
   getInitialState: function() {
@@ -55,10 +53,20 @@ var Filter = React.createClass({
   },
   render: function() {
 
+    var DropdownItems = this.state.data.map(function(item){
+      return (
+        <DropdownOption value={item} label={item} />
+      )
+    });
 
+    console.log(this.props.selected);
 
     return (
-      <div>test</div>
+      <div className="filter">
+        <Dropdown label={this.props.label} selected={this.props.selected}>
+          {DropdownItems}
+        </Dropdown>
+      </div>
       );
   }
 });
