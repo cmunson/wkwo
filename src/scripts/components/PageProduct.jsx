@@ -32,7 +32,10 @@ var PageProduct = React.createClass({
   render: function() {
   	var view_mode = this.state.data.length > 1 ? 'list' : 'detail';
     return (
-      <Product viewMode={view_mode} data={this.state.data} />
+      <div>
+        <h3>Should fetch all of the information for a wine that can't be returned from a traditional view</h3>
+        <Product viewMode={view_mode} data={this.state.data} />
+      </div>
     );
   }
 });

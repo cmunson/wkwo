@@ -31,11 +31,13 @@ var PageHome = React.createClass({
     	<span>
 	      <div className="HomePage">
 
-        <h3>You have selected:</h3>
+        <div>Have to create some sort of component that maintains the timing of these three views</div>
+
+        <h3>Should bounce between these states</h3>
         <ul>
-          <li>{this.state.grapeFilter.label}</li>
-          <li>{this.state.typeFilter.label}</li>
-          <li>{this.state.pairingFilter.label}</li>
+          <li>Barker - (tries to get the users attention. A screensaver)</li>
+          <li>Advertisement - Paid advert</li>
+          <li>Advertisement - Internal set by Angel</li>
         </ul>
 
 	      </div>

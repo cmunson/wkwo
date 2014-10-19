@@ -12,7 +12,10 @@ require('../../styles/Scanner.css');
 var Scanner = React.createClass({
 	getInitialState: function(){
 		return {
-			value: ''
+			value: '',
+      filterGrape: '',
+      filterType: '',
+      filterPairing: ''
 		}
 	},
 	keepFocus: function() {
@@ -35,7 +38,7 @@ var Scanner = React.createClass({
 		});
 	},
 	componentDidMount: function() {
-		setInterval(this.keepFocus, 1000);
+		// setInterval(this.keepFocus, 1000);
 	},
 	render: function() {
 		return (
@@ -48,10 +51,6 @@ var Scanner = React.createClass({
 					name="barcode"
 					onChange={this.onChange}
 					onKeyDown={this.handleKeyDown}/>
-				<input
-					className="submit"
-					type="button"
-					value="Submit"/>
 			</div>
 		);
 	}

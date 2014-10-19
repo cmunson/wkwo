@@ -13,9 +13,9 @@ var PageFilter = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
   getInitialState: function() {
   	return {
-  		filterGrape: {value: "Any", label: "Any"},
-  		filterType: {value: "Any", label: "Any"},
-  		filterPairing: {value: "Any", label: "Any"}
+  		filterGrape: 	{value: "Any", label: "Any"},
+  		filterType: 	{value: "Any", label: "Any"},
+  		filterPairing: 	{value: "Any", label: "Any"}
   	}
   },
   render: function () {
@@ -27,6 +27,8 @@ var PageFilter = React.createClass({
 				{label: "Type",     api:"type",    selected: this.linkState('filterType')},
 				{label: "Pairing",  api:"pairing", selected: this.linkState('filterPairing')}
 			]}/>
+
+			<div>New component that gets the filter types, processes the api and returns a productView result</div>
 
 			<h2>Filtering by: </h2>
 			<ul>
