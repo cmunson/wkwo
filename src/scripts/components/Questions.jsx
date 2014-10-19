@@ -6,48 +6,36 @@
 
 var React = require('react/addons');
 require('../../styles/Questions.css');
-var Go = require('../external/go');
 
+// Remember to remove 'Go' from node_modules. Whatever the fuck that is
 
 var Questions = React.createClass({
-  componentDidMount: function() {
-
-console.log(go);
-
-var $ = go.GraphObject.make;
-var myDiagram =
-  $(go.Diagram, "myDiagramDiv",
-    {
-      initialContentAlignment: go.Spot.Center, // Center Diagram contents
-      "undoManager.isEnabled": true // enable Ctrl-Z to undo and Ctrl-Y to redo
-    });
-
-var myModel = $(go.Model);
-// In our model data, each node is represented by a JavaScript object:
-myModel.nodeDataArray = [
-  { key: "Question" },
-  { key: "Answer1" },
-  { key: "Answer2" }
-];
-myDiagram.model = myModel;
-
-  },
   render: function () {
-
-  	var styles = {
-  		'height' : 400,
-  		'width' : 400,
-  		'background' : "white"
-  	}
-// <div id="myDiagramDiv" style={styles}/>
     return (
-        <div className="question">
-          <h1>So, what are you thinking about?</h1>
+      <div>
+
+        <div> Not going to lie, I kind of think that this component<br/>should be a group of questions, and another component should be<br/> used for handling each individual question</div>
           
+        <div className="question">
+          <h1 ref="questionText">Do you drink alone?</h1>
+          <QuestionButton text="Sometimes" />
+          <QuestionButton text="What's it to you?" />
+          <QuestionButton text="All of the godamn time" />
+          <QuestionButton text="DON'T JUDGE ME!" />
         </div>
-        
+
+      </div>
       );
-  }
+  },
+
 });
+
+var QuestionButton = React.createClass({
+  render: function () {
+    return (
+        <div className="question-button">{this.props.text}</div>
+      )
+  }
+})
 
 module.exports = Questions;

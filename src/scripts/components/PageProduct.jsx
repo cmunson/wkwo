@@ -34,6 +34,7 @@ var PageProduct = React.createClass({
     return (
       <div>
         <h3>Should fetch all of the information for a wine that can't be returned from a traditional view</h3>
+        <h3>This is not doing exactly what it should be doing. This specific page should only show one product I think.</h3>
         <Product viewMode={view_mode} data={this.state.data} />
       </div>
     );

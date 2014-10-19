@@ -5,27 +5,56 @@
 'use strict';
 
 var React = require('react/addons');
-var FormComponents 			= require('./FormComponents').FormComponents;
-var SelectDropdown 			= require('./FormComponents').FormComponents.SelectDropdown;
-var SelectDropdownOption 	= require('./FormComponents').FormComponents.SelectDropdownOption;
-var Dropdown 			= require('./FormComponents').FormComponents.Dropdown;
-var DropdownOption 	= require('./FormComponents').FormComponents.DropdownOption;
-
+var ScreensaverBarker = require('./ScreensaverBarker');
+var ScreensaverAdInternal = require('./ScreensaverAdInternal');
+var ScreensaverAdExternal = require('./ScreensaverAdExternal');
 
 require('../../styles/PageHome.css');
+
+/*
+  There needs to be a conversation about when internal
+  and external ads play and when they are allowed to interrupt
+  the barker. How often? Why? What makes sense?
+
+  Maybe this is a good start? Thoughts needed.
+ */
+
+var modes = [
+  {id: 'barker',     duration: 10000  },
+  {id: 'adinternal', duration: 5000   },
+  {id: 'adexternal', duration: 5000   }
+  ];
 
 var PageHome = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
   getInitialState: function(){
   	return {
-  		grapeFilter : {value:'red', label:'Red'},
-      typeFilter : {value:'cabernet_sauvignon', label:'Cabernet Sauvignon'},
-      pairingFilter : {value:'beef', label:'Beef'}
+      // Only Global variables should go here.
+      // Absolute MUST have variables that have important cascading
+      // effects to other modules and pages.
+      interval: setInterval(this.changeMode, 10000),
+      mode: modes[0].id
   	}
+  },
+  componentDidMount: function() {
+
+  },
+  componentWillUnmount: function() {
+    clearInterval(this.state.interval);
+  },
+  changeMode: function(){
+
   },
   render: function() {
 
   	console.log("The page's state has been updated to: ", this.state);
+
+    var currentMode = {};
+    switch(this.state.mode){
+      case 'barker':
+        currentMode = (<ScreensaverBarker />);
+        break;
+    }
 
     return (
     	<span>
@@ -39,6 +68,8 @@ var PageHome = React.createClass({
           <li>Advertisement - Paid advert</li>
           <li>Advertisement - Internal set by Angel</li>
         </ul>
+
+        {currentMode}
 
 	      </div>
      	</span>
