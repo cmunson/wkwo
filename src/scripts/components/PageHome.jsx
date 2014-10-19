@@ -56,10 +56,7 @@ var PageHome = React.createClass({
         break;
     }
 
-    return (
-    	<span>
-	      <div className="HomePage">
-
+/*
         <div>Have to create some sort of component that maintains the timing of these three views</div>
 
         <h3>Should bounce between these states</h3>
@@ -68,6 +65,11 @@ var PageHome = React.createClass({
           <li>Advertisement - Paid advert</li>
           <li>Advertisement - Internal set by Angel</li>
         </ul>
+
+ */
+    return (
+    	<span>
+	      <div className="HomePage">
 
         {currentMode}
 

@@ -1,10 +1,9 @@
 /* Stiziles */
 
 html, body {
-  /* background: url('/images/bg.jpg'); */
+  background: url('../images/bg3.jpg');
   margin: 0;
   padding: 0;
-  background: silver;
   font-family: 'Neuton', serif;
 }
 
@@ -111,10 +110,4 @@ html, body {
 .field-content {
   margin-left: 10rem;
   display: inline-blcok;
-}
-
-.HomePage h1 {
-  color: white;
-  text-align: center;
-  font-weight: bold;
 }
