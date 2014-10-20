@@ -8,18 +8,21 @@ var React = require('react/addons');
 require('../../styles/PageFilter.css');
 
 var Filters = require('./Filters');
+var ProductList = require('./ProductList');
+
 
 var PageFilter = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
   getInitialState: function() {
   	return {
-  		filterGrape: 	{value: "Any", label: "Any"},
-  		filterType: 	{value: "Any", label: "Any"},
-  		filterPairing: 	{value: "Any", label: "Any"}
+  		filterGrape: 	{value: "", label: "Any"},
+  		filterType: 	{value: "", label: "Any"},
+  		filterPairing: 	{value: "", label: "Any"}
   	}
   },
   render: function () {
     return (
+        <div>
         <div>
 
 			<Filters options={[
@@ -36,6 +39,11 @@ var PageFilter = React.createClass({
 				<li><b>Type: </b>{this.state.filterType.label}</li>
 				<li><b>Pairing: </b>{this.state.filterPairing.label}</li>
 			</ul>
+        </div>
+        <div>
+          <ProductList grape={this.state.filterGrape.value} type={this.state.filterType.value} pairing={this.state.filterPairing.value} />
+        </div>
+
         </div>
       );
   }

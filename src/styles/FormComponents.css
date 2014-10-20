@@ -51,3 +51,7 @@
 	user-select: none;
 	background: white;
 }
+
+li.item-selected {
+	color: blue;
+}

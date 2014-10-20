@@ -37,7 +37,8 @@ var Filter = React.createClass({
     return {
       label: '',
       api: '',
-      selected: ''
+      selected: '',
+      showAny: true
     }
   },
   getInitialState: function() {
@@ -52,14 +53,20 @@ var Filter = React.createClass({
     this.setState({data: data});
   },
   render: function() {
-
+    var _this = this;
+    var selectedClass = "";
     var DropdownItems = this.state.data.map(function(item){
+      selectedClass = (item===_this.props.selected.value.value ? "item-selected" : "");
       return (
-        <DropdownOption value={item} label={item} />
+        <DropdownOption selectClass={selectedClass} value={item} label={item} />
       )
     });
 
-    console.log(this.props.selected);
+    if (this.props.showAny) {
+      DropdownItems.unshift(<DropdownOption value="" label="Any" />);
+    }
+
+    //console.log(this.props.selected);
 
     return (
       <div className="filter">
